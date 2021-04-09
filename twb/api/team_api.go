@@ -27,6 +27,8 @@ func GetTeamInfo(w http.ResponseWriter, r *http.Request) {
 
 	teamID, _ := getParamUInt(r.URL.Query(), "team_id")
 
+	tutil.Info.Println("GetTeamInfo", teamID)
+
 	tinfo, err := tlogic.GetTeamInfo(uint32(teamID))
 	if err == tutil.ErrNotFound {
 		httpBadRequest(w)

@@ -1619,7 +1619,7 @@ create table if not exists twb_team_tab_00000000 (
 	member_count int unsigned not null,
 	delflag tinyint not null,
 	primary key( idx_team_id ),
-	unique key (idx_user_id, idx_team_name )
+	unique key ( idx_team_name )
 	)engine=innodb, default charset=utf8;
 create table if not exists twb_team_tab_00000001 (
 	idx_team_id int unsigned auto_increment,
@@ -1631,7 +1631,7 @@ create table if not exists twb_team_tab_00000001 (
 	member_count int unsigned not null,
 	delflag tinyint not null,
 	primary key( idx_team_id ),
-	unique key (idx_user_id, idx_team_name )
+	unique key ( idx_team_name )
 	)engine=innodb, default charset=utf8;
 create table if not exists twb_team_member_00000000 (
 	idx_team_user bigint unsigned,

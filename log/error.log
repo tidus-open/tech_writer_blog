@@ -1,0 +1,9 @@
+Error:2021/04/09 18:45:32 dao.go:79: InsertRow insert into twb_account_tab_00000010(user_name, passwd, delflag) values(?,?,?) Error 1062: Duplicate entry 'delphi' for key 'twb_account_tab_00000010.user_name'
+Error:2021/04/09 18:45:32 api.go:27: httpBadRequest {INVALID_PARAM invalid param}
+Error:2021/04/09 18:48:22 dao.go:79: InsertRow insert into twb_account_tab_00000010(user_name, passwd, delflag) values(?,?,?) Error 1062: Duplicate entry 'delphi' for key 'twb_account_tab_00000010.user_name'
+Error:2021/04/09 18:48:22 api.go:27: httpBadRequest {INVALID_PARAM invalid param}
+Error:2021/04/09 18:48:33 dao.go:79: InsertRow insert into twb_account_tab_00000010(user_name, passwd, delflag) values(?,?,?) Error 1062: Duplicate entry 'delphi' for key 'twb_account_tab_00000010.user_name'
+Error:2021/04/09 18:48:33 api.go:27: httpBadRequest {INVALID_PARAM invalid param}
+Error:2021/04/09 18:48:33 dao.go:79: InsertRow insert into twb_team_tab_00000000(idx_team_name, idx_user_id, description, create_time, update_time , member_count, delflag) values(?,?,?,?,?,?,?) Error 1062: Duplicate entry '0-team1' for key 'twb_team_tab_00000000.idx_user_id'
+Error:2021/04/09 18:48:33 team_logic.go:35: Error 1062: Duplicate entry '0-team1' for key 'twb_team_tab_00000000.idx_user_id'
+Error:2021/04/09 18:48:33 api.go:27: httpBadRequest {INVALID_PARAM invalid param}

@@ -1,0 +1,117 @@
+Info:2021/04/09 17:55:48 article_api.go:20: CreateArticle
+Info:2021/04/09 17:55:48 article_api.go:35: CreateArticle article1 article1 content 123456
+Info:2021/04/09 17:55:48 article_logic.go:9: CreateArticle article1 article1 content 123456
+Info:2021/04/09 17:55:48 article_dao.go:23: CreateArticle 141
+Info:2021/04/09 17:55:48 dao.go:90: InsertRow32ID 141 9 9357
+Info:2021/04/09 17:55:48 article_logic.go:16: CreateArticle ID 9357
+Info:2021/04/09 17:55:48 score_dao.go:18: CreateScore 274
+Info:2021/04/09 17:55:48 dao.go:90: InsertRow32ID 274 0 274
+Info:2021/04/09 17:55:48 article_api.go:43: CreateArticle ID 9357
+Info:2021/04/09 17:55:48 comment_api.go:16: CreateComment
+Info:2021/04/09 17:55:48 comment_api.go:31: CreateComment &{9357 12345 article 1 comment}
+Info:2021/04/09 17:55:48 comment_logic.go:15: CreateComment 9357 12345 article 1 comment
+Info:2021/04/09 17:55:48 comment_dao.go:20: CreateComment 274
+Info:2021/04/09 17:55:48 score_api.go:16: UpdateScore
+Info:2021/04/09 17:55:48 score_api.go:31: UpdateScoreReq &{9357 12345 3}
+Info:2021/04/09 17:55:48 score_logic.go:13: UpdateScore 9357 3
+Info:2021/04/09 17:55:48 score_dao.go:29: UpdateScore 274
+Info:2021/04/09 18:45:19 account_logic.go:14:  CreateAccount delphi 94812fed4f8694e9e541973df96b1962
+Info:2021/04/09 18:45:19 dao.go:90: InsertRow32ID 10 1 1034
+Info:2021/04/09 18:45:19 article_api.go:20: CreateArticle
+Info:2021/04/09 18:45:19 article_api.go:35: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:45:19 article_logic.go:9: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:45:19 article_dao.go:23: CreateArticle 250
+Info:2021/04/09 18:45:19 dao.go:90: InsertRow32ID 250 1 1274
+Info:2021/04/09 18:45:19 article_logic.go:16: CreateArticle ID 1274
+Info:2021/04/09 18:45:19 score_dao.go:18: CreateScore 177
+Info:2021/04/09 18:45:19 dao.go:90: InsertRow32ID 177 0 177
+Info:2021/04/09 18:45:19 article_api.go:43: CreateArticle ID 1274
+Info:2021/04/09 18:45:19 comment_api.go:16: CreateComment
+Info:2021/04/09 18:45:19 comment_api.go:31: CreateComment &{1274 0 article 1 comment}
+Info:2021/04/09 18:45:19 comment_logic.go:15: CreateComment 1274 0 article 1 comment
+Info:2021/04/09 18:45:19 comment_dao.go:20: CreateComment 177
+Info:2021/04/09 18:45:19 score_api.go:16: UpdateScore
+Info:2021/04/09 18:45:19 score_api.go:31: UpdateScoreReq &{1274 12345 3}
+Info:2021/04/09 18:45:19 score_logic.go:13: UpdateScore 1274 3
+Info:2021/04/09 18:45:19 score_dao.go:29: UpdateScore 177
+Info:2021/04/09 18:45:32 account_logic.go:14:  CreateAccount delphi 94812fed4f8694e9e541973df96b1962
+Info:2021/04/09 18:45:32 article_api.go:20: CreateArticle
+Info:2021/04/09 18:45:32 article_api.go:35: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:45:32 article_logic.go:9: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:45:32 article_dao.go:23: CreateArticle 250
+Info:2021/04/09 18:45:32 dao.go:90: InsertRow32ID 250 2 2298
+Info:2021/04/09 18:45:32 article_logic.go:16: CreateArticle ID 2298
+Info:2021/04/09 18:45:32 score_dao.go:18: CreateScore 635
+Info:2021/04/09 18:45:32 dao.go:90: InsertRow32ID 635 0 635
+Info:2021/04/09 18:45:32 article_api.go:43: CreateArticle ID 2298
+Info:2021/04/09 18:45:32 comment_api.go:16: CreateComment
+Info:2021/04/09 18:45:32 comment_api.go:31: CreateComment &{2298 0 article 1 comment}
+Info:2021/04/09 18:45:32 comment_logic.go:15: CreateComment 2298 0 article 1 comment
+Info:2021/04/09 18:45:32 comment_dao.go:20: CreateComment 635
+Info:2021/04/09 18:45:32 score_api.go:16: UpdateScore
+Info:2021/04/09 18:45:32 score_api.go:31: UpdateScoreReq &{2298 12345 3}
+Info:2021/04/09 18:45:32 score_logic.go:13: UpdateScore 2298 3
+Info:2021/04/09 18:45:32 score_dao.go:29: UpdateScore 635
+Info:2021/04/09 18:48:22 account_logic.go:14:  CreateAccount delphi 94812fed4f8694e9e541973df96b1962
+Info:2021/04/09 18:48:22 article_api.go:20: CreateArticle
+Info:2021/04/09 18:48:22 article_api.go:35: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:48:22 article_logic.go:9: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:48:22 article_dao.go:23: CreateArticle 250
+Info:2021/04/09 18:48:22 dao.go:90: InsertRow32ID 250 3 3322
+Info:2021/04/09 18:48:22 article_logic.go:16: CreateArticle ID 3322
+Info:2021/04/09 18:48:22 score_dao.go:18: CreateScore 949
+Info:2021/04/09 18:48:22 dao.go:90: InsertRow32ID 949 0 949
+Info:2021/04/09 18:48:22 article_api.go:43: CreateArticle ID 3322
+Info:2021/04/09 18:48:22 comment_api.go:16: CreateComment
+Info:2021/04/09 18:48:22 comment_api.go:31: CreateComment &{3322 0 article 1 comment}
+Info:2021/04/09 18:48:22 comment_logic.go:15: CreateComment 3322 0 article 1 comment
+Info:2021/04/09 18:48:22 comment_dao.go:20: CreateComment 949
+Info:2021/04/09 18:48:22 score_api.go:16: UpdateScore
+Info:2021/04/09 18:48:22 score_api.go:31: UpdateScoreReq &{3322 12345 3}
+Info:2021/04/09 18:48:22 score_logic.go:13: UpdateScore 3322 3
+Info:2021/04/09 18:48:22 score_dao.go:29: UpdateScore 949
+Info:2021/04/09 18:48:22 team_api.go:60: CreateTeam team1 Desc1 0
+Info:2021/04/09 18:48:22 team_logic.go:32: CreateTeamInfo
+Info:2021/04/09 18:48:22 dao.go:90: InsertRow32ID 0 1 1024
+Info:2021/04/09 18:48:33 account_logic.go:14:  CreateAccount delphi 94812fed4f8694e9e541973df96b1962
+Info:2021/04/09 18:48:33 article_api.go:20: CreateArticle
+Info:2021/04/09 18:48:33 article_api.go:35: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:48:33 article_logic.go:9: CreateArticle article1 article1 content 0
+Info:2021/04/09 18:48:33 article_dao.go:23: CreateArticle 250
+Info:2021/04/09 18:48:33 dao.go:90: InsertRow32ID 250 4 4346
+Info:2021/04/09 18:48:33 article_logic.go:16: CreateArticle ID 4346
+Info:2021/04/09 18:48:33 score_dao.go:18: CreateScore 986
+Info:2021/04/09 18:48:33 dao.go:90: InsertRow32ID 986 0 986
+Info:2021/04/09 18:48:33 article_api.go:43: CreateArticle ID 4346
+Info:2021/04/09 18:48:33 comment_api.go:16: CreateComment
+Info:2021/04/09 18:48:33 comment_api.go:31: CreateComment &{4346 0 article 1 comment}
+Info:2021/04/09 18:48:33 comment_logic.go:15: CreateComment 4346 0 article 1 comment
+Info:2021/04/09 18:48:33 comment_dao.go:20: CreateComment 986
+Info:2021/04/09 18:48:33 score_api.go:16: UpdateScore
+Info:2021/04/09 18:48:33 score_api.go:31: UpdateScoreReq &{4346 12345 3}
+Info:2021/04/09 18:48:33 score_logic.go:13: UpdateScore 4346 3
+Info:2021/04/09 18:48:33 score_dao.go:29: UpdateScore 986
+Info:2021/04/09 18:48:33 team_api.go:60: CreateTeam team1 Desc1 0
+Info:2021/04/09 18:48:33 team_logic.go:32: CreateTeamInfo
+Info:2021/04/09 19:15:58 account_logic.go:14:  CreateAccount delphi 94812fed4f8694e9e541973df96b1962
+Info:2021/04/09 19:15:58 dao.go:90: InsertRow32ID 10 1 1034
+Info:2021/04/09 19:15:58 article_api.go:20: CreateArticle
+Info:2021/04/09 19:15:58 article_api.go:35: CreateArticle article1 article1 content 0
+Info:2021/04/09 19:15:58 article_logic.go:16: CreateArticle article1 article1 content 0
+Info:2021/04/09 19:15:58 article_dao.go:21: CreateArticle 250
+Info:2021/04/09 19:15:58 dao.go:90: InsertRow32ID 250 1 1274
+Info:2021/04/09 19:15:58 article_logic.go:23: CreateArticle ID 1274
+Info:2021/04/09 19:15:58 score_dao.go:18: CreateScore 177
+Info:2021/04/09 19:15:58 dao.go:90: InsertRow32ID 177 0 177
+Info:2021/04/09 19:15:58 article_api.go:43: CreateArticle ID 1274
+Info:2021/04/09 19:15:58 comment_api.go:16: CreateComment
+Info:2021/04/09 19:15:58 comment_api.go:31: CreateComment &{1274 0 article 1 comment}
+Info:2021/04/09 19:15:58 comment_logic.go:15: CreateComment 1274 0 article 1 comment
+Info:2021/04/09 19:15:58 comment_dao.go:20: CreateComment 177
+Info:2021/04/09 19:15:58 score_api.go:16: UpdateScore
+Info:2021/04/09 19:15:58 score_api.go:31: UpdateScoreReq &{1274 12345 3}
+Info:2021/04/09 19:15:58 score_logic.go:13: UpdateScore 1274 3
+Info:2021/04/09 19:15:58 score_dao.go:29: UpdateScore 177
+Info:2021/04/09 19:15:58 team_api.go:62: CreateTeam team1 Desc1 0
+Info:2021/04/09 19:15:58 team_logic.go:32: CreateTeamInfo
+Info:2021/04/09 19:15:58 dao.go:90: InsertRow32ID 0 1 1024

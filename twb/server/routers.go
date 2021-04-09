@@ -77,4 +77,10 @@ var routes = Routes{
 		"/v1/articles/{article_id}/score",
 		tapi.UpdateScore,
 	},
+	Route{
+		"GetArticle",
+		"GET",
+		"/v1/articles/{article_id}",
+		tapi.GetArticle,
+	},
 }

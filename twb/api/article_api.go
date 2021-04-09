@@ -46,3 +46,31 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 	httpResp(w, rsp)
 
 }
+
+func GetArticle(w http.ResponseWriter, r *http.Request) {
+	tutil.Info.Println("GetArticle")
+
+	err := checkToken(r)
+	if err != nil {
+		httpBadRequest(w)
+		return
+	}
+
+	articleID, _ := getParamUInt(r.URL.Query(), "article_id")
+
+	tutil.Info.Println("GetArticle", articleID)
+
+	article, err := tlogic.GetArticle(uint32(articleID))
+	if err == tutil.ErrNotFound {
+		httpBadRequest(w)
+		return
+	}
+
+	if err == tutil.InternalErr {
+		httpInterErr(w)
+		return
+	}
+
+	httpResp(w, article)
+
+}

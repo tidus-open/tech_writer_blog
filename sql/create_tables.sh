@@ -28,7 +28,7 @@ do
 	member_count int unsigned not null,
 	delflag tinyint not null,
 	primary key( idx_team_id ),
-	unique key (idx_user_id, idx_team_name )
+	unique key ( idx_team_name )
 	)engine=innodb, default charset=utf8;" >> tables.sql
 	
 done

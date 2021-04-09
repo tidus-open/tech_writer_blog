@@ -71,46 +71,65 @@ func TestCreatTeam1(t *testing.T) {
 }
 */
 
-func iDToTableIDAutoID(ID uint32) (tableID, autoID uint32) {
-	tableID = ID & 0x3FF
-	autoID = (ID >> 10)
-	return tableID, autoID
-}
+func TestWriteLogic(t *testing.T) {
+	uReq := CreateAccountReq{Name: "delphi", Passwd: "12345"}
+	var uRsp = &IDResp{}
+	err := PostApi(t, "https://127.0.0.1:9090/v1/accounts", uReq, uRsp)
+	if err != nil {
+		t.Error(err)
+		return
+	}
 
-func tableIDAutoIDToID(tableID, autoID uint32) (ID uint32) {
-	ID = autoID
-	ID <<= 10
-	ID += tableID
-	return ID
-}
+	userID := uint32(uRsp.ID)
 
-func TestArticleLogic1(t *testing.T) {
-	aReq := CreateArticleReq{Title: "article1", UserID: 123456, Content: "article1 content"}
+	fmt.Println("userID", userID)
+
+	aReq := CreateArticleReq{Title: "article1", UserID: userID, Content: "article1 content"}
 	var aRsp = &IDResp{}
-	err := PostApi(t, "https://127.0.0.1:9090/v1/articles", aReq, aRsp)
+	err = PostApi(t, "https://127.0.0.1:9090/v1/articles", aReq, aRsp)
 	if err != nil {
 		t.Error(err)
 		return
 
 	}
 
-	cReq := CreateCommentReq{ArticleID: uint32(aRsp.ID), UserID: 12345, Content: "article 1 comment"}
-	cUrl := fmt.Sprintf("https://127.0.0.1:9090/v1/articles/%d/comments", int32(aRsp.ID))
+	articleID := uint32(aRsp.ID)
+	fmt.Println("articleID", articleID)
+
+	cReq := CreateCommentReq{ArticleID: uint32(aRsp.ID), UserID: userID, Content: "article 1 comment"}
+	cUrl := fmt.Sprintf("https://127.0.0.1:9090/v1/articles/%d/comments", articleID)
 	fmt.Println(cUrl)
 	var cRsp = &CommResp{}
 	err = PostApi(t, cUrl, cReq, cRsp)
 	if err != nil {
-		//t.Error(err)
+		t.Error(err)
 		return
 	}
 
 	sReq := UpdateScoreReq{ArticleID: uint32(aRsp.ID), UserID: 12345, Score: 3}
-	sUrl := fmt.Sprintf("https://127.0.0.1:9090/v1/articles/%d/score", int32(aRsp.ID))
+	sUrl := fmt.Sprintf("https://127.0.0.1:9090/v1/articles/%d/score", articleID)
 	fmt.Println(sUrl)
 	var sRsp = &CommResp{}
 	err = PostApi(t, sUrl, sReq, sRsp)
 	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	tReq := CreateTeamReq{Name: "team1", Desc: "Desc1", UserID: userID}
+	var tRsp = &CommResp{}
+	err = PostApi(t, "https://127.0.0.1:9090/v1/teams", tReq, tRsp)
+	if err != nil {
+		t.Error(err)
 		return
 	}
 
 }
+
+/*
+func TestReadLogic(t testing.T) {
+	CheckGetApi(t, "https://127.0.0.1:9090/v1/accounts?user_name=delphi&passwd=12345",
+		http.StatusOK, CommResp{Code: "OK", Msg: "ok"})
+
+}
+*/
