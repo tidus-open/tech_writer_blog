@@ -61,11 +61,11 @@ func GetRow(dest interface{}, query string, args ...interface{}) (err error) {
 func GetRows(dest interface{}, query string, args ...interface{}) (err error) {
 	err = db.Select(dest, query, args...)
 	if err == sql.ErrNoRows {
-		tutil.Info.Println("NoRows GetRows query %s", query)
+		tutil.Info.Println("NoRows GetRows query %s", query, err)
 		return tutil.ErrNotFound
 	}
 	if err != nil {
-		tutil.Err.Println("GetRows query %s", query)
+		tutil.Err.Println("GetRows query %s", query, err)
 		return tutil.InternalErr
 	}
 
@@ -140,7 +140,7 @@ func init() {
 	rand.Seed(time.Now().UnixNano())
 	fmt.Println(db)
 
-	db.SetMaxOpenConns(20)
+	db.SetMaxOpenConns(100)
 	db.SetMaxIdleConns(10)
 
 }

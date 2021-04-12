@@ -1,0 +1,2 @@
+&{0xc000101380 mysql false 0xc00007f470}
+Redis<127.0.0.1:6379 db:0> PONG <nil>

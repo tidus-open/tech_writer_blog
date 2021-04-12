@@ -17,7 +17,7 @@ type CreateArticleRsp struct {
 }
 
 func CreateArticle(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("CreateArticle")
+	tutil.LogInfo("CreateArticle")
 
 	var at = &Article{}
 	err := checkToken(r)
@@ -32,7 +32,7 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tutil.Info.Println("CreateArticle", at.Title, at.Content, at.UserID)
+	tutil.LogInfo("CreateArticle", at.Title, at.Content, at.UserID)
 
 	var articleID uint32
 	if articleID, err = tlogic.CreateArticle(at.Title, at.Content, at.UserID); err != nil {
@@ -40,7 +40,7 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tutil.Info.Println("CreateArticle ID", articleID)
+	tutil.LogInfo("CreateArticle ID", articleID)
 
 	rsp := CreateArticleRsp{ID: articleID}
 	httpResp(w, rsp)
@@ -48,7 +48,9 @@ func CreateArticle(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetArticle(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("GetArticle")
+	tutil.LogInfo("GetArticle")
+
+	articleID, _ := getIdFromURL(r.URL.Path, 3)
 
 	err := checkToken(r)
 	if err != nil {
@@ -56,9 +58,7 @@ func GetArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	articleID, _ := getParamUInt(r.URL.Query(), "article_id")
-
-	tutil.Info.Println("GetArticle", articleID)
+	tutil.LogInfo("GetArticle", articleID)
 
 	article, err := tlogic.GetArticle(uint32(articleID))
 	if err == tutil.ErrNotFound {

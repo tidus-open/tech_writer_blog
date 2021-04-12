@@ -17,7 +17,7 @@ type Account struct {
 func CheckAccount(name string, passwd string) (err error) {
 	tableID := uint32(BKDRHash(name) % 20)
 
-	tutil.Info.Println("CheckAccount name %s tableID %v passwd %v", name, tableID, passwd)
+	tutil.LogInfo("CheckAccount name %s tableID %v passwd %v", name, tableID, passwd)
 
 	query := fmt.Sprintf("select idx_user_id, user_name, passwd, delflag from twb_account_tab_%08d where user_name = ? and passwd = ?", tableID)
 	var acct Account
@@ -28,7 +28,7 @@ func CheckAccount(name string, passwd string) (err error) {
 func CreateAccount(name string, passwd string) (uint32, error) {
 	tableID := uint32(BKDRHash(name) % 20)
 
-	fmt.Printf("CreateAccount tableID %v \n", tableID)
+	//fmt.Printf("CreateAccount tableID %v \n", tableID)
 
 	query := fmt.Sprintf("insert into twb_account_tab_%08d(user_name, passwd, delflag) values(?,?,?)", tableID)
 

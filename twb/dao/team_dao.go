@@ -14,19 +14,20 @@ type Team struct {
 	Desc       string `db:"description"`
 	CreateTime uint32 `db:"create_time"`
 	UpdateTime uint32 `db:"update_time"`
-	MemberCnt  uint32 `db:"member_cnt"`
+	MemberCnt  uint32 `db:"member_count"`
 }
 
-func GetTeamInfo(id uint32) (team *Team, err error) {
+func GetTeamInfo(id uint32) (*Team, error) {
 	tableID, autoID := iDToTableIDAutoID(id)
 
-	tutil.Info.Println("GetTeamInfo id %v", id)
+	tutil.LogInfo("GetTeamInfo id %v", id)
 
-	query := fmt.Sprintf("select * from twb_team_tab_%08d where idx_team_id = ?", tableID)
+	query := fmt.Sprintf("select idx_team_id, idx_team_name, idx_user_id, description, create_time, update_time, member_count from twb_team_tab_%08d where idx_team_id = ?", tableID)
 
-	err = GetRows(team, query, autoID)
+	var team Team
+	err := GetRow(&team, query, autoID)
 
-	return team, err
+	return &team, err
 
 }
 

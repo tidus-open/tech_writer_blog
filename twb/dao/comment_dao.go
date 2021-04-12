@@ -17,7 +17,7 @@ type Comment struct {
 func CreateComment(articleID uint32, userID uint32, content string) (uint64, error) {
 	tableID := (hash32(articleID) % 1000)
 
-	tutil.Info.Println("CreateComment", tableID)
+	tutil.LogInfo("CreateComment", tableID, articleID)
 
 	query := fmt.Sprintf("insert into twb_comment_tab_%08d(idx_article_create, user_id, create_time, content, delflag) values(?,?,?,?,?)", tableID)
 
@@ -32,7 +32,7 @@ func CreateComment(articleID uint32, userID uint32, content string) (uint64, err
 func GetComment(articleID uint32) ([]Comment, error) {
 	tableID := (hash32(articleID) % 1000)
 
-	tutil.Info.Println("GetComment", tableID)
+	tutil.LogInfo("GetComment", tableID, articleID)
 
 	articleCreate := uint64(articleID)
 	articleCreate <<= 32
@@ -40,12 +40,14 @@ func GetComment(articleID uint32) ([]Comment, error) {
 	start := articleCreate
 	end := (articleCreate | 0xffffffff)
 
-	query := fmt.Sprintf("select idx_article_create, user_id, create_time, content from twb_comment_tab_%08d where  idx_article_create > ? and idx_article_create < ?")
+	//	fmt.Println(start, end)
 
-	var comment []Comment
+	query := fmt.Sprintf("select idx_article_create, user_id, create_time, content from twb_comment_tab_%08d where  idx_article_create > ? and idx_article_create < ?", tableID)
 
-	err := GetRows(comment, query, start, end)
+	var comments []Comment
 
-	return comment, err
+	err := GetRows(&comments, query, start, end)
+
+	return comments, err
 
 }

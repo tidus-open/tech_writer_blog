@@ -1,9 +1,8 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/gorilla/mux"
+	"net/http"
 	"tapi"
 )
 
@@ -82,5 +81,23 @@ var routes = Routes{
 		"GET",
 		"/v1/articles/{article_id}",
 		tapi.GetArticle,
+	},
+	Route{
+		"GetComment",
+		"GET",
+		"/v1/articles/{article_id}/comments",
+		tapi.GetComment,
+	},
+	Route{
+		"GetScore",
+		"GET",
+		"/v1/articles/{article_id}/score",
+		tapi.GetScore,
+	},
+	Route{
+		"GetTop",
+		"GET",
+		"/v1/top",
+		tapi.GetTop,
 	},
 }

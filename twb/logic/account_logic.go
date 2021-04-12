@@ -11,11 +11,11 @@ type Account struct {
 }
 
 func CreateAccount(name string, passwd string) (uint32, error) {
-	tutil.Info.Println(" CreateAccount", name, passwd)
+	tutil.LogInfo(" CreateAccount", name, passwd)
 	return tdao.CreateAccount(name, passwd)
 }
 
 func CheckAccount(name string, passwd string) (err error) {
-	tutil.Info.Println("CheckAccount", name, passwd)
+	tutil.LogInfo("CheckAccount", name, passwd)
 	return tdao.CheckAccount(name, passwd)
 }

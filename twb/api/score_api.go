@@ -13,7 +13,7 @@ type UpdateScoreReq struct {
 }
 
 func UpdateScore(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("UpdateScore")
+	tutil.LogInfo("UpdateScore")
 	var score = &UpdateScoreReq{}
 
 	err := checkToken(r)
@@ -28,7 +28,7 @@ func UpdateScore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tutil.Info.Println("UpdateScoreReq", score)
+	tutil.LogInfo("UpdateScoreReq", score)
 
 	if err = tlogic.UpdateScore(score.ArticleID, score.Score); err != nil {
 		httpBadRequest(w)
@@ -40,7 +40,9 @@ func UpdateScore(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetScore(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("GetScore")
+	tutil.LogInfo("GetScore")
+
+	articleID, _ := getIdFromURL(r.URL.Path, 3)
 
 	err := checkToken(r)
 	if err != nil {
@@ -48,9 +50,7 @@ func GetScore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	articleID, _ := getParamUInt(r.URL.Query(), "article_id")
-
-	tutil.Info.Println("GetScore", articleID)
+	tutil.LogInfo("GetScore", articleID)
 
 	score, err := tlogic.GetScore(uint32(articleID))
 	if err == tutil.ErrNotFound {

@@ -13,7 +13,7 @@ type CreateCommentReq struct {
 }
 
 func CreateComment(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("CreateComment")
+	tutil.LogInfo("CreateComment")
 
 	var comment = &CreateCommentReq{}
 	err := checkToken(r)
@@ -28,7 +28,7 @@ func CreateComment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tutil.Info.Println("CreateComment", comment)
+	tutil.LogInfo("CreateComment", comment)
 
 	if _, err = tlogic.CreateComment(comment.ArticleID, comment.UserID, comment.Content); err != nil {
 		httpBadRequest(w)
@@ -40,7 +40,9 @@ func CreateComment(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetComment(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("GetComment")
+	tutil.LogInfo("GetComment")
+
+	articleID, _ := getIdFromURL(r.URL.Path, 3)
 
 	err := checkToken(r)
 	if err != nil {
@@ -48,9 +50,7 @@ func GetComment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	articleID, _ := getParamUInt(r.URL.Query(), "article_id")
-
-	tutil.Info.Println("GetComment", articleID)
+	tutil.LogInfo("GetComment", articleID)
 
 	comments, err := tlogic.GetComment(uint32(articleID))
 	if err == tutil.ErrNotFound {

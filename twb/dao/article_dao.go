@@ -18,7 +18,7 @@ type Article struct {
 func CreateArticle(title string, content string, userID uint32, team uint32) (uint32, error) {
 	tableID := (hash32(userID) % 400)
 
-	tutil.Info.Println("CreateArticle", tableID)
+	tutil.LogInfo("CreateArticle", tableID)
 
 	query := fmt.Sprintf("insert into twb_article_tab_%08d(idx_user_id, title, content, create_time, update_time, delflag) values(?,?,?,?,?,?) ", tableID)
 
@@ -26,14 +26,15 @@ func CreateArticle(title string, content string, userID uint32, team uint32) (ui
 
 }
 
-func GetArticle(articleID uint32) (article *Article, err error) {
+func GetArticle(articleID uint32) (*Article, error) {
 	tableID, autoID := iDToTableIDAutoID(articleID)
 
-	tutil.Info.Println("GetArticle", tableID, autoID)
+	tutil.LogInfo("GetArticle", tableID, autoID)
 
 	query := fmt.Sprintf("select idx_article_id, idx_user_id, title, content, update_time  from twb_article_tab_%08d where idx_article_id = ?", tableID)
 
-	err = GetRows(article, query, autoID)
+	var article = &Article{}
+	err := GetRow(article, query, autoID)
 
 	return article, err
 

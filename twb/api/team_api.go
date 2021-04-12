@@ -1,6 +1,7 @@
 package tapi
 
 import (
+	//"fmt"
 	"net/http"
 	"tlogic"
 	"tutil"
@@ -17,7 +18,10 @@ type CreateTeamRsp struct {
 }
 
 func GetTeamInfo(w http.ResponseWriter, r *http.Request) {
-	tutil.Info.Println("GetTeamInfo")
+	tutil.LogInfo("GetTeamInfo")
+	//fmt.Println(r.URL.Path)
+
+	teamID, _ := getIdFromURL(r.URL.Path, 3)
 
 	err := checkToken(r)
 	if err != nil {
@@ -25,9 +29,7 @@ func GetTeamInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	teamID, _ := getParamUInt(r.URL.Query(), "team_id")
-
-	tutil.Info.Println("GetTeamInfo", teamID)
+	tutil.LogInfo("GetTeamInfo", teamID)
 
 	tinfo, err := tlogic.GetTeamInfo(uint32(teamID))
 	if err == tutil.ErrNotFound {
@@ -49,7 +51,7 @@ func CreateTeam(w http.ResponseWriter, r *http.Request) {
 
 	err := checkToken(r)
 	if err != nil {
-		httpBadRequest(w)
+		httpUnauthorized(w)
 		return
 	}
 
@@ -59,7 +61,7 @@ func CreateTeam(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tutil.Info.Println("CreateTeam", req.Name, req.Desc, req.UserID)
+	tutil.LogInfo("CreateTeam", req.Name, req.Desc, req.UserID)
 
 	var autoID uint32
 	if autoID, err = tlogic.CreateTeam(req.Name, req.Desc, req.UserID); err != nil {

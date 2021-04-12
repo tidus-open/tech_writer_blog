@@ -15,7 +15,7 @@ type Score struct {
 func CreateScore(articleID uint32) (uint32, error) {
 	tableID := (hash32(articleID) % 1000)
 
-	tutil.Info.Println("CreateScore", tableID)
+	tutil.LogInfo("CreateScore", articleID, tableID)
 
 	query := fmt.Sprintf("insert into twb_article_score_tab_%08d(idx_article_id, total_score, member_cnt) values(?,?,?)", tableID)
 
@@ -26,9 +26,9 @@ func CreateScore(articleID uint32) (uint32, error) {
 func UpdateScore(articleID uint32, score uint32) error {
 	tableID := (hash32(articleID) % 1000)
 
-	tutil.Info.Println("UpdateScore", tableID)
+	tutil.LogInfo("UpdateScore", articleID, tableID)
 
-	query := fmt.Sprintf("update twb_article_score_tab_%08d set total_score=total_score+? and member_cnt=member_cnt+1 where idx_article_id = ?", tableID)
+	query := fmt.Sprintf("update twb_article_score_tab_%08d set total_score=total_score+? , member_cnt=member_cnt+1 where idx_article_id = ?", tableID)
 
 	return UpdateRow(tableID, query, score, articleID)
 }
@@ -36,14 +36,15 @@ func UpdateScore(articleID uint32, score uint32) error {
 func GetScore(articleID uint32) (*Score, error) {
 	tableID := (hash32(articleID) % 1000)
 
-	var score = &Score{}
+	tutil.LogInfo("GetScore", tableID, articleID)
 
-	tutil.Info.Println("GetScore", articleID)
+	query := fmt.Sprintf("select idx_article_id, total_score, member_cnt from twb_article_score_tab_%08d where idx_article_id = ?", tableID)
 
-	query := fmt.Sprintf("select idx_article_id, total_score, member_cnt from twb_article_score_tab_%08d where idx_atrilce_id = ?", tableID)
+	var score Score
+	err := GetRow(&score, query, articleID)
 
-	err := GetRows(score, query, articleID)
+	tutil.Info.Println(score)
 
-	return score, err
+	return &score, err
 
 }

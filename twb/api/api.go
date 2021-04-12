@@ -2,12 +2,13 @@ package tapi
 
 import (
 	"encoding/json"
-	"fmt"
+	//	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"tutil"
 )
 
@@ -18,6 +19,18 @@ type Resp struct {
 
 type autoIDResp struct {
 	id uint32 `json:"id"`
+}
+
+func httpUnauthorized(w http.ResponseWriter) {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusUnauthorized) // unprocessable entity
+	rsp := Resp{Code: "INVALID_PARAM", Msg: "invalid token"}
+	tutil.Err.Println("httpUnauthorized", rsp)
+	//	fmt.Println("httpUnauthorized", rsp)
+	if err := json.NewEncoder(w).Encode(rsp); err != nil {
+		panic(err)
+	}
+
 }
 
 func httpBadRequest(w http.ResponseWriter) {
@@ -70,12 +83,23 @@ func httpResp(w http.ResponseWriter, rsp interface{}) {
 
 }
 
+func getIdFromURL(path string, idx int) (uint32, error) {
+	s := strings.Split(path, "/")
+	id, err := strconv.Atoi(s[idx])
+	if err != nil {
+		tutil.Err.Println("getIdFromURL err", path)
+		return 0, err
+	}
+
+	return uint32(id), err
+}
+
 func getParamStr(vars url.Values, name string) (value string, isExist bool) {
 	param, ok := vars[name]
 	if !ok {
 		return "", false
 	} else {
-		fmt.Printf("%s : %s\n", name, param[0])
+		//fmt.Printf("%s : %s\n", name, param[0])
 		return param[0], true
 	}
 }
@@ -94,18 +118,13 @@ func getParamUInt(vars url.Values, name string) (uint32, bool) {
 	return uint32(intval), true
 }
 
-func checkToken(r *http.Request) (err error) {
-	fmt.Println("token :", r.Header["Token"])
-	return nil
-}
-
 func GetJsonParam(dest interface{}, r *http.Request) error {
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1024))
 	if err != nil {
 		tutil.Err.Println(err)
 		return err
 	}
-	fmt.Println(body)
+	//fmt.Println(body)
 	if err := r.Body.Close(); err != nil {
 		tutil.Err.Println(err)
 		return err
